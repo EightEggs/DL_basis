@@ -4,13 +4,13 @@
 
 ## Structure
 
-| folder          | info                                                             |
-|:----------------|:-----------------------------------------------------------------|
-| activation_func | implement of activation functions (sigmoid, relu, softmax, etc.) |
-| perceptron      | implement of AND, NAND, OR, XOR using perceptron                 |
-| first_nn        | my first neural network (only forward) & mnist predict           |
-| mnist           | mnist datasets & methods of loading train/test data              |
-| SGD             | implement of stochastic gradient descent                         |
+| folder                               | info                                                             |
+|:-------------------------------------|:-----------------------------------------------------------------|
+| [activation_func](./activation_func) | implement of activation functions (sigmoid, relu, softmax, etc.) |
+| [perceptron](./perceptron)           | implement of AND, NAND, OR, XOR using perceptron                 |
+| [first_nn](./first_nn)               | my first neural network (only forward) & mnist predict           |
+| [mnist](./mnist)                     | mnist datasets & methods of loading train/test data              |
+| [SGD](./SGD)                         | implement of stochastic gradient descent                         |
                                                                 
 
 ## Environment
