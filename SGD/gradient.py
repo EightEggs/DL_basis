@@ -13,7 +13,7 @@ def numerical_grad(f: Callable, x: np.ndarray) -> np.ndarray:
     h = 1e-4
     grad = np.zeros_like(x)
 
-    for i in range(x.size):
+    for i in range(x.shape[0]):
         x0 = x[i]
         x[i] = x0 + h
         fx1 = f(x)
