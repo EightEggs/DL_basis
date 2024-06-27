@@ -5,25 +5,28 @@ from numpy import ndarray
 
 
 def numerical_diff(f: Callable, x: float) -> float:
-    h = 1e-4
+    h = 1e-7
     return (f(x + h) - f(x - h)) / (2 * h)
 
 
 def numerical_grad(f: Callable, x: np.ndarray) -> np.ndarray:
-    h = 1e-4
+    h = 1e-7
     grad = np.zeros_like(x)
 
-    for i in range(x.shape[0]):
-        x0 = x[i]
-        x[i] = x0 + h
-        fx1 = f(x)
-
-        x[i] = x0 - h
-        fx2 = f(x)
-
-        grad[i] = (fx1 - fx2) / (2 * h)
-        x[i] = x0
-
+    it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+    while not it.finished:
+        idx = it.multi_index
+        tmp_val = x[idx]
+        x[idx] = tmp_val + h
+        fxh1 = f(x) # f(x+h)
+        
+        x[idx] = tmp_val - h 
+        fxh2 = f(x) # f(x-h)
+        grad[idx] = (fxh1 - fxh2) / (2*h)
+        
+        x[idx] = tmp_val
+        it.iternext()   
+        
     return grad
 
 

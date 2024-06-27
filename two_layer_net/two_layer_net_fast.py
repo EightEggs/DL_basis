@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(__file__) + os.sep + "..")
 
 from loss_func.loss_func import cross_entropy_error
 from activation_func.activation_func import sigmoid, softmax
-from SGD.gradient import numerical_grad
+from optimizers.gradient import numerical_grad
 from layers.Affine import Affine
 from layers.Relu import Relu
 from layers.SoftmaxWithLoss import SoftmaxWithLoss
@@ -61,5 +61,16 @@ class TwoLayerNetFast:
         grads["b1"] = self.layers["Affine1"].db
         grads["W2"] = self.layers["Affine2"].dW
         grads["b2"] = self.layers["Affine2"].db
+
+        return grads
+
+    def numerical_grad(self, x, t):
+        loss_W = lambda W: self.loss(x, t)
+
+        grads = {}
+        grads["W1"] = numerical_grad(loss_W, self.params["W1"])
+        grads["b1"] = numerical_grad(loss_W, self.params["b1"])
+        grads["W2"] = numerical_grad(loss_W, self.params["W2"])
+        grads["b2"] = numerical_grad(loss_W, self.params["b2"])
 
         return grads
