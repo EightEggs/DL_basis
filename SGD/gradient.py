@@ -30,7 +30,7 @@ def numerical_grad(f: Callable, x: np.ndarray) -> np.ndarray:
 def grad_desc(f: Callable, init_x: np.ndarray, lr: float = 0.01, steps: int = 100) -> ndarray:
     x = init_x
     xs = []
-    for i in range(steps):
+    for _ in range(steps):
         xs.append(x.copy())
         grad = numerical_grad(f, x)
         x -= lr * grad
