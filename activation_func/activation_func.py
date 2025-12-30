@@ -14,7 +14,6 @@ def relu(x: np.ndarray) -> np.ndarray:
 
 
 def softmax(x: np.ndarray) -> np.ndarray:
-    c = np.max(x)
-    exp = np.exp(x - c)  # avoid overflow
-    sum_exp = np.sum(exp)
-    return exp / sum_exp
+    x = x - np.max(x, axis=-1, keepdims=True)  # 避免溢出
+    y = np.exp(x) / np.sum(np.exp(x), axis=-1, keepdims=True)
+    return y
